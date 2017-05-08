@@ -1,0 +1,63 @@
+//---------------------------------------------------------------------------
+
+#ifndef MainH
+#define MainH
+//---------------------------------------------------------------------------
+#include <System.Classes.hpp>
+#include <Vcl.Controls.hpp>
+#include <Vcl.StdCtrls.hpp>
+#include <Vcl.Forms.hpp>
+#include <Vcl.ComCtrls.hpp>
+#include <Vcl.Grids.hpp>
+//---------------------------------------------------------------------------
+
+#include "Tree.h"
+#include "Workman.h"
+
+class TWindowTree : public TForm
+{
+__published:	// IDE-managed Components
+	TLabel *Name;
+	TLabel *ID;
+	TLabel *Label1;
+	TStringGrid *StringGrid;
+	TMemo *Memo;
+	TTreeView *TreeView;
+	TButton *AddAll;
+	TEdit *NewName;
+	TEdit *NewId;
+	TButton *Add;
+	TEdit *SearchId;
+	TButton *Search;
+	TButton *Delete;
+	TButton *Show;
+	TButton *Postorder;
+	TButton *Inorder;
+	TButton *Preorder;
+	TButton *Balance;
+	TButton *DeleteNode;
+	void __fastcall FormCreate(TObject *Sender);
+	void __fastcall AddAllClick(TObject *Sender);
+	void __fastcall AddClick(TObject *Sender);
+	void __fastcall SearchClick(TObject *Sender);
+	void __fastcall DeleteClick(TObject *Sender);
+	void __fastcall DeleteNodeClick(TObject *Sender);
+	void __fastcall ShowClick(TObject *Sender);
+	void __fastcall BalanceClick(TObject *Sender);
+	void __fastcall PreorderClick(TObject *Sender);
+	void __fastcall InorderClick(TObject *Sender);
+	void __fastcall PostorderClick(TObject *Sender);
+private:
+			int amount;
+			Workman workmen[8];
+
+			// User declarations
+public:
+    Tree *tree;
+	void ShowTree(TTreeView *TreeView, TTreeNode *treeNode, Node *node);	// User declarations
+	__fastcall TWindowTree(TComponent* Owner);
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TWindowTree *WindowTree;
+//---------------------------------------------------------------------------
+#endif

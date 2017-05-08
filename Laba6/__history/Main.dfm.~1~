@@ -1,0 +1,33 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 435
+  ClientWidth = 642
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object StringGrid1: TStringGrid
+    Left = 8
+    Top = 8
+    Width = 129
+    Height = 409
+    ColCount = 2
+    RowCount = 16
+    TabOrder = 0
+  end
+  object TreeView1: TTreeView
+    Left = 232
+    Top = 128
+    Width = 233
+    Height = 209
+    Indent = 19
+    TabOrder = 1
+  end
+end

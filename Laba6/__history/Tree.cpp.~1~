@@ -1,0 +1,316 @@
+//---------------------------------------------------------------------------
+
+#pragma hdrstop
+
+#include "Tree.h"
+//---------------------------------------------------------------------------
+
+#pragma package(smart_init)
+
+Tree::~Tree()
+{
+	Delete(head);
+}
+
+void Tree::Create(Node **tree, String name, int workmanID){
+	Node *newElement = new Node;
+	newElement->left = NULL;
+	newElement->right = NULL;
+	newElement->Name = name;
+	newElement->WorkmanID = workmanID;
+	*tree = newElement;
+}
+
+
+void Tree::Add(String name, int workmanID){
+	Node *newElement = new Node;
+	newElement->Name = name;
+	newElement->WorkmanID = workmanID;
+	if (head == NULL) {
+		Create(&root, name, workmanID);
+	}
+	else {
+		current = head;
+		while (true){
+			if (workmanID == current->WorkmanID) {
+				return;
+			}
+			else if (workmanID > current->WorkmanID) {
+				if (current->right) {
+					workmanID = current->right;
+				}
+				else {
+					Create(&current->right, name, workmanID);
+					return;
+				}
+
+			}
+			else {
+				if (current->left) {
+					current = current->left;
+				}
+				else {
+					Create(&current->left, name, workmanID);
+					return;
+				}
+			}
+		}
+	}
+}
+
+void Tree::Delete(Node *node)
+{
+	if (node != NULL)
+	{
+		Delete(node->left);
+		node->left = NULL;
+		Delete(node->right);
+		node->right = NULL;
+		delete node;
+	}
+}
+
+TreeItem* Tree::Find(int workmanId)
+{
+	Node *nodeToFind = head;
+	prev = nodeToFind;
+	if (nodeToFind != NULL) {
+		while (nodeToFind != NULL && nodeToFind->WorkmanId != workmanId) {
+			if (workmanId > nodeToFind->WorkmanId) {
+				prev = nodeToFind;
+				nodeToFind = nodeToFind->right;
+			}
+			else if (workmanId < nodeToFind->WorkmanId) {
+				prev = nodeToFind;
+				nodeToFind = nodeToFind->left;
+			}
+		}
+	}
+	return nodeToFind;
+}
+
+
+void Tree::Delete(TMemo *Memo, int workmanID, bool &isDeletedSuccesful){
+	if (head == NULL) {
+		ShowMessage("Сначала добавьте рабочих в дерево!");
+		isDeletedSuccesful = false;
+		return;
+	}
+	Node *workmanToDelete = Find(workmanID);
+	if (workmanToDelete != NULL) {
+		if (!workmanToDelete->right && !workmanToDelete->left) {
+			if (prev->right == workmanToDelete) {
+				prev->right = NULL;
+			}
+			else if (prev->left == workmanToDelete) {
+				prev->left = NULL;
+			}
+			if (workmanToDelete == head) {
+				head = NULL;
+			}
+			delete workmanToDelete;
+		}
+		else if ((workmanToDelete->right != NULL && workmanToDelete->left == NULL)) {
+			if (prev->right == workmanToDelete) {
+				prev->right = workmanToDelete->right;
+			}
+			else if (prev->left == workmanToDelete) {
+				prev->left = workmanToDelete->right;
+			}
+			if (workmanToDelete == head) {
+				head = workmanToDelete->right;
+			}
+			delete workmanToDelete;
+		}
+		else if ((workmanToDelete->right == NULL && workmanToDelete->left != NULL)) {
+			if (prev->right == workmanToDelete) {
+				prev->right = workmanToDelete->left;
+			}
+			else if (prev->left == workmanToDelete) {
+				prev->left = workmanToDelete->left;
+			}
+			if (workmanToDelete == root) {
+				head = workmanToDelete->left;
+			}
+			delete workmanToDelete;
+		}
+		else if (workmanToDelete->right != NULL && workmanToDelete->left != NULL) {
+			Node *max = workmanToDelete, *previous;
+			while (max->right != NULL) {
+				previous = max;
+				max = max->right;
+			}
+			previous->right = max->left;
+			workmanToDelete->WorkmanID = max->WorkmanID;
+			workmanToDelete->Name = max->Name;
+			delete max;
+		}
+	}
+
+	Memo->Lines->Add("Рабочий " + workmanToDelete->Name + " был удален");
+}
+
+void Tree::DeleteNode(TMemo *Memo, int workmanID){
+	if (head == NULL) {
+		ShowMessage("Сначала добавьте рабочих в дерево!");
+		return;
+	}
+	Node *workmanToDelete = Find(workmanID);
+	Delete(workmanToDelete);
+	if (prev->right == workmanToDelete) {
+		prev->right = NULL;
+	}
+	else
+	{
+		prev->left = NULL;
+	}
+	Memo->Lines->Add("Рабочий " + target->Name + " был удален");
+}
+
+void Tree::Search(TMemo *Memo, int workmanID){
+	if (head == NULL) {
+		ShowMessage("Сначала добавьте рабочих в дерево!");
+	}
+	else {
+		Node *element = head;
+		while (true){
+			if (element == NULL) {
+				ShowMessage("Рабочий не был найден!");
+				return;
+			}
+			else {
+				if (element->StudentID == workmanID) {
+					Memo->Lines->Add(element->Name + " " + element->WorkmanID);
+					return;
+				}
+				else if (element->WorkmanID > workmanID) {
+					 element = element->left;
+				}
+				else
+					element = element->right;
+			}
+		}
+	}
+}
+
+
+
+void Tree::Direct()
+{
+	show = "";
+	Direct(root);
+}
+
+void Tree::Direct(TreeItem *node)
+{
+	if (node) {
+		show += IntToStr(node->StudentID) + " ";
+		if (node->left)
+			Direct(node->left);
+		if (node->right)
+			Direct(node->right);
+	}
+}
+
+
+
+
+void Tree::Increase()
+{
+	show = "";
+	Increase(root);
+}
+
+void Tree::Increase(TreeItem *node)
+{
+	if (node) {
+		if (node->left)
+			Increase(node->left);
+		show += IntToStr(node->StudentID) + " ";
+		if (node->right)
+			Increase(node->right);
+	}
+}
+
+
+
+
+void Tree::Back()
+{
+	show = "";
+	Back(root);
+}
+
+void Tree::Back(TreeItem *node)
+{
+	if (node) {
+		if (node->left)
+			Back(node->left);
+		if (node->right)
+			Back(node->right);
+		show += IntToStr(node->StudentID) + " ";
+	}
+}
+
+
+
+
+
+void Tree::Balance()
+{
+	TreeItem *pseudo = new TreeItem;
+	pseudo->right = root;
+	int size;
+	tree_to_vine(pseudo, &size);
+	vine_to_tree(pseudo, &size);
+	root = pseudo->right;
+	delete pseudo;
+}
+
+void Tree::tree_to_vine(TreeItem *node, int *size)
+{
+	TreeItem *remainder, *tail, *temp;
+	tail = node;
+	remainder = tail->right;
+	*size = 0;
+	while (remainder) {
+		if (!remainder->left) {
+			tail = remainder;
+			remainder = remainder->right;
+			(*size)++;
+		} else {
+			temp = remainder->left;
+			remainder->left = temp->right;
+			temp->right = remainder;
+			remainder = temp;
+			tail->right = temp;
+		}
+	}
+}
+
+void Tree::vine_to_tree(TreeItem *node, int *size)
+{
+	int leafs;
+	leafs = *size + 1 - (int)pow(2., floor(log(*size + 1) / log(2)));
+	compress(node, leafs);
+	*size = *size - leafs;
+	while (*size > 1) {
+		compress(node, *size / 2);
+		*size /= 2;
+    }
+}
+
+void Tree::compress(TreeItem *node, int count)
+{
+	TreeItem *child, *scanner;
+	scanner = node;
+	for (int i = 1; i <= count; i++) {
+		child = scanner->right;
+		scanner->right = child->right;
+		scanner = scanner->right;
+		child->right = scanner->left;
+		scanner->left = child;
+	}
+}
+
+

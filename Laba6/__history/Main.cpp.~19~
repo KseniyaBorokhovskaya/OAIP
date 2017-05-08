@@ -1,0 +1,185 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Main.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TWindowTree *WindowTree;
+void ShowTrees(TTreeView *show, TTreeNode *treenode, Node *node);
+//---------------------------------------------------------------------------
+__fastcall TWindowTree::TWindowTree(TComponent* Owner)
+	: TForm(Owner)
+{
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TWindowTree::FormCreate(TObject *Sender)
+{
+	amount = 8;
+	//Tree *tree = new Thee();
+	StringGrid->Cells[0][0] = "Имя";
+	StringGrid->Cells[1][0] = "Номер пропуска";
+	workmen[0].Name = "Иванов А.Р.";
+	workmen[0].WorkmanID = 124236553;
+	workmen[1].Name = "Григорчук Д.Н.";
+	workmen[1].WorkmanID = 484564564;
+	workmen[2].Name = "Денисик Б.С.";
+	workmen[2].WorkmanID = 453576236;
+	workmen[3].Name = "Жартун Ю.В.";
+	workmen[3].WorkmanID = 125654732;
+	workmen[4].Name = "Анисимов П.К.";
+	workmen[4].WorkmanID = 995675856;
+	workmen[5].Name = "Задруцкий Д.А.";
+	workmen[5].WorkmanID = 325054455;
+	workmen[6].Name = "Елисеева О.К.";
+	workmen[6].WorkmanID = 785475356;
+	workmen[7].Name = "Рыжикова Ж.У.";
+	workmen[7].WorkmanID = 543089467;
+	for (int i = 0; i < 8; i++) {
+		StringGrid->Cells[0][i+1] = workmen[i].Name;
+		StringGrid->Cells[1][i+1] = workmen[i].WorkmanID;
+	}
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TWindowTree::AddAllClick(TObject *Sender)
+{
+	for (int i = 0; i < amount; i++) {
+		tree->Add(workmen[i].Name, workmen[i].WorkmanID);
+	}
+	Memo->Lines->Add("Рабочие были добавлены в дерево");
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TWindowTree::AddClick(TObject *Sender)
+{
+	if (NewName->Text == "" || NewId->Text == "") ShowMessage("Введите данные!");
+	else {
+		tree->Add(NewName->Text, StrToInt(NewId->Text));
+		amount++;
+		StringGrid->RowCount++;
+		StringGrid->Cells[0][amount] = NewName->Text;
+		StringGrid->Cells[1][amount] = NewId->Text;
+		NewName->Text = "";
+		NewId->Text = "";
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TWindowTree::SearchClick(TObject *Sender)
+{
+	if (SearchId->Text == "") ShowMessage("Введите номер пропуска!");
+	else {
+		Memo->Lines->Clear();
+		tree->Search(Memo, StrToInt(SearchId->Text));
+		SearchId->Text = "";
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TWindowTree::DeleteClick(TObject *Sender)
+{
+	if (SearchId->Text == "") ShowMessage("Введите номер пропуска!");
+	else {
+		Memo->Lines->Clear();
+		bool isDeletedSuccesful = true;
+		tree->Delete(Memo, StrToInt(SearchId->Text), isDeletedSuccesful);
+		if (isDeletedSuccesful) {
+			for (int i = 0; i < amount; i++) {
+				if (StringGrid->Cells[1][i] == SearchId->Text) {
+					while (i < amount){
+						StringGrid->Cells[0][i] = StringGrid->Cells[0][i + 1];
+						StringGrid->Cells[1][i] = StringGrid->Cells[1][i + 1];
+						i++;
+					}
+					break;
+				}
+			}
+		StringGrid->RowCount--;
+		}
+		SearchId->Text = "";
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TWindowTree::DeleteNodeClick(TObject *Sender)
+{
+	if (SearchId->Text == "") ShowMessage("Введите номер пропуска!");
+	else {
+		Memo->Lines->Clear();
+		tree->DeleteNode(Memo, StrToInt(SearchId->Text));
+		for (int i = 0; i < amount; i++) {
+			if (StringGrid->Cells[1][i] == SearchId->Text) {
+				while (i < amount){
+					StringGrid->Cells[0][i] = StringGrid->Cells[0][i + 1];
+					StringGrid->Cells[1][i] = StringGrid->Cells[1][i + 1];
+					i++;
+				}
+					break;
+			}
+		}
+		StringGrid->RowCount--;
+		Show->Click();
+		SearchId->Text = "";
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TWindowTree::ShowClick(TObject *Sender)
+{
+	TTreeNode *node;
+	TreeView->Items->Clear();
+	ShowTree(TreeView, node, tree->GetHead());
+	TreeView->FullExpand();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TWindowTree::BalanceClick(TObject *Sender)
+{
+    tree->Balance();
+	Show->Click();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TWindowTree::PreorderClick(TObject *Sender)
+{
+	Memo->Clear();
+	tree->Preorder();
+	Memo->Lines->Add(tree->GetStringToShowTraverse());
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TWindowTree::InorderClick(TObject *Sender)
+{
+    Memo->Clear();
+	tree->Inorder();
+	Memo->Lines->Add(tree->GetStringToShowTraverse());
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TWindowTree::PostorderClick(TObject *Sender)
+{
+	Memo->Clear();
+	tree->Postorder();
+	Memo->Lines->Add(tree->GetStringToShowTraverse());
+}
+//---------------------------------------------------------------------------
+	void ShowTrees(TTreeView *show, TTreeNode *treenode, Node *node)
+		{
+			if (node != NULL) {
+				if (node == tree->GetRoot()) {
+					treenode = show->Items->Add(NULL, node->Name + "(" + IntToStr(node->StudentID) + ")");
+				}
+				else {
+					treenode = show->Items->AddChild(treenode, node->Name + "(" + IntToStr(node->StudentID) + ")");
+				}
+				ShowTrees(show, treenode, node->left);
+				ShowTrees(show, treenode, node->right);
+			}
+			else	return;
+		}

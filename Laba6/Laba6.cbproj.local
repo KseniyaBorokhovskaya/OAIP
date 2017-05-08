@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.807,C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Main.h=C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Laba6\Main.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.740,C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Project2.cbproj=C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Laba6.cbproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.259,C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Unit1.cpp=C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Main.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.362,C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Laba6PCH1.h=C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Laba6\Laba6PCH1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.098,=C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.659,C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Laba6\Unit1.cpp=C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Laba6\Workman.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.259,C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Unit1.h=C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Main.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.566,=C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Laba6\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.984,=C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Laba6\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.946,C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Laba6\Unit1.cpp=C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Laba6\Tree.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.659,C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Laba6\Unit1.h=C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Laba6\Workman.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.794,C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Laba6.cbproj=C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Laba6\Laba6.cbproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.946,C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Laba6\Unit1.h=C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Laba6\Tree.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.721,C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Project2PCH1.h=C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Laba6PCH1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.081,=C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Project2PCH1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.259,C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Main.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.807,C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Main.cpp=C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Laba6\Main.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.807,C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Main.dfm=C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Laba6\Main.dfm</Transaction>
+    <Transaction>2017.05.08 11:44:40.542,=C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Laba6\Unit1.cpp</Transaction>
+    <Transaction>2017.05.08 11:44:53.399,C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Laba6\ShowTree.h=C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Laba6\Unit1.h</Transaction>
+    <Transaction>2017.05.08 11:44:53.399,C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Laba6\ShowTree.cpp=C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Laba6\Unit1.cpp</Transaction>
+    <Transaction>2017.05.08 11:56:48.298,C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Laba6\ShowTree.cpp=</Transaction>
+    <Transaction>2017.05.08 12:38:24.099,C:\Users\Бороховская Ксения\Documents\Embarcadero\Studio\Projects\Laba6\Workman.cpp=</Transaction>
+  </Transactions>
+</BorlandProject>

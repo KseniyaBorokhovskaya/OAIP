@@ -1,0 +1,70 @@
+//---------------------------------------------------------------------------
+
+#ifndef TreeH
+#define TreeH
+#include <vcl.h>
+//---------------------------------------------------------------------------
+class Node {
+private:
+	int WorkmanID;
+	String Name;
+	Node *left;
+	Node *right;
+};
+
+class Tree {
+private:
+	Node * head, *current, *prev;
+	AnsiString stringToShowTraverse;
+public:
+
+	Tree(){}
+	~Tree();
+
+
+	void Create(Node **root, String name, int workmanID);
+	void Add(String name, int workmanID);
+
+
+	void Delete(Node *node);
+	TreeItem* Find(int workmanID);
+
+	// удаление элемента по ключу
+	void Delete(TMemo *Memo, int workmanID, bool &isDeletedSuccesful);
+
+	// удаление ветки с заданным ключом(индивидуальное задание)
+	void DeleteNode(TMemo *Memo, int workmanID);
+
+
+	void Search(TMemo *Memo, int workmanID);
+
+
+
+
+	//Прямой проход
+	void Preorder();
+	void Preorder(Node *node);
+
+	//Проход в возрастании
+	void Inorder();
+	void Inorder(Node *node);
+
+	// Обратный проход дерева
+	void Postorder();
+	void Postorder(Node *node);
+
+	// Метод, который показывает обходы
+	AnsiString GetStringToShowTraverse()
+	{
+		return stringToShowTraverse;
+	};
+
+	//Сбалансировать дерево
+	void Balance();
+	void treeToLiana(Node *node, int *amount);
+	void lianaToTree(Node *node, int *amount);
+	void Compression(Node *node, int amount);
+
+
+};
+#endif

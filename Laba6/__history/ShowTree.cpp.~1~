@@ -1,0 +1,22 @@
+//---------------------------------------------------------------------------
+
+#pragma hdrstop
+
+#include "ShowTree.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+
+void ShowTrees(TTreeView *show, TTreeNode *treenode, TreeItem *node)
+{
+	if (node != NULL) {
+		if (node == tree->GetRoot()) {
+			treenode = show->Items->Add(NULL, node->Name + "(" + IntToStr(node->StudentID) + ")");
+		}
+		else {
+			treenode = show->Items->AddChild(treenode, node->Name + "(" + IntToStr(node->StudentID) + ")");
+		}
+		ShowTrees(show, treenode, node->left);
+		ShowTrees(show, treenode, node->right);
+	}
+	else return;
+}
